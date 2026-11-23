@@ -7,8 +7,10 @@ reads them, categorizes every transaction, matches transfers between your own
 accounts, and writes balanced entries into a [Beancount](https://github.com/beancount/beancount)
 ledger. Anything it isn't sure about goes into a review queue instead of your books.
 
-> Built by a Chartered Accountant / CPA who wanted her own books done properly:
-> double-entry, auditable, private, and without retyping statements.
+> Built by [Ajay Mirani](https://ajaymirani.com), Senior Manager, Software Engineering,
+> and Deepa Menghani, Chartered Accountant / CPA. An engineer and an accountant who
+> wanted personal books done properly: double-entry, auditable, private, and
+> without retyping statements.
 
 ```
 statements/  ──►  importers  ──►  dedupe  ──►  categorize  ──►  write  ──►  validate
@@ -137,6 +139,15 @@ See [docs/architecture.md](docs/architecture.md) for how the pieces fit together
 ledgermind is a bookkeeping tool. It is not tax, legal or investment advice.
 Check important figures against your statements and consult a qualified
 professional for tax filings.
+
+## Authors
+
+- **Ajay Mirani**, Senior Manager, Software Engineering, and AI/ML researcher
+  working on intelligent financial systems.
+  [ajaymirani.com](https://ajaymirani.com) ·
+  [LinkedIn](https://www.linkedin.com/in/ajaymirani/) ·
+  [Google Scholar](https://scholar.google.com/citations?user=6mVSIhsAAAAJ)
+- **Deepa Menghani**, Chartered Accountant (CA) and Certified Public Accountant (CPA).
 
 ## License
 
