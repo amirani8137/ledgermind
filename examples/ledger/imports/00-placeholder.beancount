@@ -1,0 +1,2 @@
+;; Keeps the `include "imports/*.beancount"` glob valid before the first import.
+;; ledgermind writes new entries to import-YYYYMMDD-HHMMSS.beancount files here.

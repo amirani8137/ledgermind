@@ -1,0 +1,39 @@
+# ---- Financial data: never commit real statements or ledgers ----
+*.pdf
+*.csv
+*.ofx
+*.qfx
+*.xlsx
+*.xls
+statements/
+private/
+*.local.beancount
+*.rejected
+.env
+.env.*
+
+# Allow the fake sample data
+!examples/statements/
+!examples/statements/*.csv
+
+# Imports generated when running the demo
+examples/ledger/imports/import-*.beancount
+examples/report.xlsx
+
+# ---- Python ----
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.venv/
+venv/
+.pytest_cache/
+.ruff_cache/
+.*.picklecache
+
+# ---- Editors / OS ----
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

@@ -1,0 +1,49 @@
+# Categorization rules. First match wins. `pattern` is a case-insensitive regex
+# matched against the payee + description. Optional: direction = "debit" | "credit".
+
+# --- Transfers between your own accounts go through InTransit, so the two
+# --- sides cancel out instead of being counted twice.
+[[rule]]
+pattern = "TRANSFER TO ETRADE|ETRADE ACH"
+account = "Assets:Transfers:InTransit"
+
+[[rule]]
+pattern = "AMEX EPAYMENT|PAYMENT RECEIVED"
+account = "Assets:Transfers:InTransit"
+
+# --- Income
+[[rule]]
+pattern   = "PAYROLL|DIRECT DEP"
+account   = "Income:Salary"
+direction = "credit"
+
+# --- Food
+[[rule]]
+pattern = "WHOLE FOODS|TRADER JOE|SAFEWAY|COSTCO"
+account = "Expenses:Food:Groceries"
+
+[[rule]]
+pattern = "STARBUCKS|PEET'?S|BLUE BOTTLE"
+account = "Expenses:Food:Coffee"
+
+[[rule]]
+pattern = "CHIPOTLE|DOORDASH|UBER EATS"
+account = "Expenses:Food:Dining"
+
+# --- Utilities & subscriptions
+[[rule]]
+pattern = "PG&E|PGANDE"
+account = "Expenses:Utilities:Electricity"
+
+[[rule]]
+pattern = "COMCAST|XFINITY"
+account = "Expenses:Utilities:Internet"
+
+[[rule]]
+pattern = "NETFLIX|SPOTIFY|HULU"
+account = "Expenses:Entertainment:Subscriptions"
+
+# --- Travel
+[[rule]]
+pattern = "UNITED AIRLINES|DELTA AIR|SOUTHWEST"
+account = "Expenses:Travel:Flights"

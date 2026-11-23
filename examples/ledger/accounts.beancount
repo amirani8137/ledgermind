@@ -1,0 +1,184 @@
+;; =====================================================================
+;; accounts.beancount — Chart of Accounts template (ledgermind)
+;; Include this from your main ledger:  include "accounts.beancount"
+;;
+;; Naming convention:  Type:Category:Institution:Detail
+;; Replace institution names / last-4 digits with your own.
+;; Delete what you don't need; the agent only writes to accounts opened here.
+;; =====================================================================
+
+
+;; ---------------------------------------------------------------------
+;; ASSETS
+;; ---------------------------------------------------------------------
+
+;; --- Cash & bank ---
+2020-01-01 open Assets:Bank:Chase:Checking            USD
+2020-01-01 open Assets:Bank:Chase:Savings             USD
+2020-01-01 open Assets:Bank:Ally:HighYieldSavings     USD
+2020-01-01 open Assets:Cash:Wallet                    USD
+
+;; --- Payment apps (treated as cash accounts) ---
+2020-01-01 open Assets:PaymentApps:Venmo              USD
+2020-01-01 open Assets:PaymentApps:PayPal             USD
+2020-01-01 open Assets:PaymentApps:Zelle              USD   ; clearing account
+
+;; --- Brokerage: E*TRADE (taxable) ---
+;; Cash sweep and positions are separate so lots are tracked cleanly.
+2020-01-01 open Assets:Brokerage:Etrade:Cash          USD
+2020-01-01 open Assets:Brokerage:Etrade:Stocks        "FIFO"   ; lots held at cost {}
+2020-01-01 open Assets:Brokerage:Etrade:Options       "FIFO"   ; long option positions
+;; Other brokers follow the same pattern:
+;; 2020-01-01 open Assets:Brokerage:Schwab:Cash       USD
+;; 2020-01-01 open Assets:Brokerage:Schwab:Stocks     "FIFO"
+
+;; --- Retirement (tax-advantaged) ---
+2020-01-01 open Assets:Retirement:Fidelity:401k       "FIFO"
+2020-01-01 open Assets:Retirement:Fidelity:RothIRA    "FIFO"
+2020-01-01 open Assets:Retirement:Fidelity:TradIRA    "FIFO"
+2020-01-01 open Assets:Retirement:HSA                 "FIFO"
+
+;; --- Real estate & vehicles (optional: for net worth) ---
+2020-01-01 open Assets:RealEstate:Home                USD   ; purchase cost + improvements
+2020-01-01 open Assets:Vehicles:Car                   USD   ; purchase cost
+
+;; --- Escrow held by mortgage servicer ---
+2020-01-01 open Assets:Escrow:PropertyTax             USD
+2020-01-01 open Assets:Escrow:HomeInsurance           USD
+
+;; --- Receivables & clearing ---
+2020-01-01 open Assets:Receivables:Reimbursements     USD   ; money owed to you
+2020-01-01 open Assets:Receivables:TaxRefund          USD
+2020-01-01 open Assets:Transfers:InTransit            USD   ; agent uses this to match transfers between accounts
+
+;; --- India (optional, NRI) ---
+;; 2020-01-01 open Assets:India:Bank:NRE              INR
+;; 2020-01-01 open Assets:India:Bank:NRO              INR
+;; 2020-01-01 open Assets:India:Investments:MutualFunds "FIFO"
+
+;; ---------------------------------------------------------------------
+;; LIABILITIES
+;; ---------------------------------------------------------------------
+
+;; --- Credit cards ---
+2020-01-01 open Liabilities:CreditCard:Amex:Platinum  USD
+2020-01-01 open Liabilities:CreditCard:Chase:Sapphire USD
+2020-01-01 open Liabilities:CreditCard:Citi:DoubleCash USD
+
+;; --- Loans ---
+2020-01-01 open Liabilities:Loans:Mortgage:Home       USD
+2020-01-01 open Liabilities:Loans:Auto:Car            USD
+;; 2020-01-01 open Liabilities:Loans:HELOC            USD
+
+;; --- Brokerage liabilities ---
+2020-01-01 open Liabilities:Brokerage:Etrade:Margin   USD
+2020-01-01 open Liabilities:Brokerage:Etrade:ShortOptions "FIFO"  ; written (sold) options
+
+;; --- Taxes payable ---
+2020-01-01 open Liabilities:Taxes:Federal             USD
+2020-01-01 open Liabilities:Taxes:California          USD
+
+;; ---------------------------------------------------------------------
+;; EQUITY
+;; ---------------------------------------------------------------------
+2020-01-01 open Equity:OpeningBalances
+2020-01-01 open Equity:Conversions                    ; currency conversions (USD/INR)
+2020-01-01 open Equity:Adjustments                    ; reconciliation write-offs (should stay tiny)
+
+;; ---------------------------------------------------------------------
+;; INCOME
+;; ---------------------------------------------------------------------
+
+;; --- Investment income ---
+2020-01-01 open Income:Investments:CapitalGains            USD  ; importer default; split ST/LT at tax time
+2020-01-01 open Income:Investments:CapitalGains:ShortTerm  USD
+2020-01-01 open Income:Investments:CapitalGains:LongTerm   USD
+2020-01-01 open Income:Investments:Options:ShortTerm       USD  ; premiums realized on close/expiry
+2020-01-01 open Income:Investments:Dividends:Qualified     USD
+2020-01-01 open Income:Investments:Dividends:Ordinary      USD
+2020-01-01 open Income:Investments:Interest:Brokerage      USD
+2020-01-01 open Income:Investments:Interest:Bank           USD
+2020-01-01 open Income:Investments:WashSaleDisallowed      USD  ; memo: loss deferred into basis
+
+;; --- Other income ---
+2020-01-01 open Income:Salary                         USD
+2020-01-01 open Income:Business:Consulting            USD
+2020-01-01 open Income:Rewards:CreditCardCashback     USD
+2020-01-01 open Income:Gifts                          USD
+2020-01-01 open Income:Other                          USD
+
+;; ---------------------------------------------------------------------
+;; EXPENSES
+;; ---------------------------------------------------------------------
+
+;; --- Housing ---
+2020-01-01 open Expenses:Housing:MortgageInterest     USD   ; ties to Form 1098
+2020-01-01 open Expenses:Housing:PropertyTax          USD
+2020-01-01 open Expenses:Housing:HomeInsurance        USD
+2020-01-01 open Expenses:Housing:HOA                  USD
+2020-01-01 open Expenses:Housing:Maintenance          USD
+
+;; --- Utilities ---
+2020-01-01 open Expenses:Utilities:Electricity        USD
+2020-01-01 open Expenses:Utilities:Gas                USD
+2020-01-01 open Expenses:Utilities:Water              USD
+2020-01-01 open Expenses:Utilities:Internet           USD
+2020-01-01 open Expenses:Utilities:Phone              USD
+
+;; --- Auto ---
+2020-01-01 open Expenses:Auto:LoanInterest            USD
+2020-01-01 open Expenses:Auto:Fuel                    USD   ; or Charging for EVs
+2020-01-01 open Expenses:Auto:Insurance               USD
+2020-01-01 open Expenses:Auto:Maintenance             USD
+2020-01-01 open Expenses:Auto:Registration            USD
+2020-01-01 open Expenses:Auto:Tolls                   USD
+
+;; --- Food ---
+2020-01-01 open Expenses:Food:Groceries               USD
+2020-01-01 open Expenses:Food:Dining                  USD
+2020-01-01 open Expenses:Food:Coffee                  USD
+
+;; --- Household & personal ---
+2020-01-01 open Expenses:Shopping:Household           USD
+2020-01-01 open Expenses:Shopping:Clothing            USD
+2020-01-01 open Expenses:Shopping:Electronics         USD
+2020-01-01 open Expenses:Personal:Care                USD
+2020-01-01 open Expenses:Personal:Fitness             USD
+2020-01-01 open Expenses:Health:Medical               USD
+2020-01-01 open Expenses:Health:Insurance             USD
+2020-01-01 open Expenses:Pets:Food                    USD
+2020-01-01 open Expenses:Pets:Vet                     USD
+
+;; --- Family & education ---
+2020-01-01 open Expenses:Education:Tuition            USD
+2020-01-01 open Expenses:Education:Classes            USD
+2020-01-01 open Expenses:Kids:Activities              USD
+
+;; --- Lifestyle ---
+2020-01-01 open Expenses:Travel:Flights               USD
+2020-01-01 open Expenses:Travel:Lodging               USD
+2020-01-01 open Expenses:Entertainment:Subscriptions  USD
+2020-01-01 open Expenses:Entertainment:Events         USD
+2020-01-01 open Expenses:Gifts                        USD
+2020-01-01 open Expenses:Charity                      USD   ; deductible donations
+
+;; --- Investing costs ---
+2020-01-01 open Expenses:Investing:Commissions        USD
+2020-01-01 open Expenses:Investing:RegulatoryFees     USD   ; SEC / FINRA TAF fees
+2020-01-01 open Expenses:Investing:MarginInterest     USD
+2020-01-01 open Expenses:Investing:DataAndSoftware    USD
+
+;; --- Financial ---
+2020-01-01 open Expenses:Financial:BankFees           USD
+2020-01-01 open Expenses:Financial:CardAnnualFees     USD
+2020-01-01 open Expenses:Financial:InterestCharges    USD
+
+;; --- Taxes ---
+2020-01-01 open Expenses:Taxes:Federal:Income         USD
+2020-01-01 open Expenses:Taxes:Federal:Estimated      USD
+2020-01-01 open Expenses:Taxes:California:Income      USD
+2020-01-01 open Expenses:Taxes:California:Estimated   USD
+2020-01-01 open Expenses:Taxes:Payroll                USD
+
+;; --- Agent fallback ---
+2020-01-01 open Expenses:Uncategorized                USD   ; agent posts here when unsure → review queue

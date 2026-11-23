@@ -1,0 +1,20 @@
+;; Example ledger (fake data). Copy this folder to start your own — and keep
+;; your real ledger OUT of any public repository.
+
+option "title" "Example Household Ledger"
+option "operating_currency" "USD"
+option "inferred_tolerance_default" "USD:0.005"
+
+include "accounts.beancount"
+include "imports/*.beancount"
+
+2025-12-01 * "Opening balances"
+  Assets:Bank:Chase:Checking               12052.10 USD
+  Liabilities:CreditCard:Amex:Platinum     -1240.55 USD
+  Equity:OpeningBalances
+
+;; A previously reviewed entry. The history categorizer learns from cleared ("*")
+;; entries like this, so next month's CHEVRON charge is categorized automatically.
+2025-12-20 * "CHEVRON 0091"
+  Assets:Bank:Chase:Checking                 -52.10 USD
+  Expenses:Auto:Fuel

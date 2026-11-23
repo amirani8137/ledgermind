@@ -1,0 +1,39 @@
+# ledgermind configuration (example). Paths are relative to this file.
+
+ledger      = "ledger/main.beancount"   # your main ledger file
+inbox       = "statements"              # drop new statement files here
+imports_dir = "ledger/imports"          # where new entries are written
+rules       = "rules.toml"
+
+# Entries categorized with confidence below this are flagged "!" for review.
+review_threshold = 0.8
+
+# Optional AI categorizer for anything rules and history can't handle.
+[llm]
+enabled  = false
+provider = "ollama"          # "ollama" (local, private) or "anthropic"
+model    = "llama3.1"        # e.g. "claude-haiku-5-5" for anthropic
+# base_url = "http://localhost:11434"
+
+# One [[sources]] block per account. `pattern` matches files in the inbox.
+
+[[sources]]
+pattern  = "chase_checking_*.csv"
+importer = "chase"
+account  = "Assets:Bank:Chase:Checking"
+
+[[sources]]
+pattern  = "etrade_*.csv"
+importer = "etrade"
+account  = "Assets:Brokerage:Etrade"     # root: uses :Cash and :Stocks under it
+
+[[sources]]
+pattern  = "amex_*.csv"
+importer = "generic_csv"
+account  = "Liabilities:CreditCard:Amex:Platinum"
+  [sources.options]
+  date_column        = "Date"
+  description_column = "Description"
+  amount_column      = "Amount"
+  date_format        = "%m/%d/%Y"
+  negate             = true             # card shows charges as positive

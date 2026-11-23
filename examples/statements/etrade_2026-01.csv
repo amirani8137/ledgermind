@@ -1,0 +1,8 @@
+TransactionDate,TransactionType,SecurityType,Symbol,Quantity,Amount,Price,Commission,Description
+01/07/26,Transfer,,,0,5000.00,0,0,ACH DEPOSIT
+01/08/26,Bought,EQ,NVDA,10,-1400.00,140.00,0,NVIDIA CORP
+01/12/26,Bought,EQ,AAPL,5,-1150.65,230.00,0.65,APPLE INC
+01/20/26,Sold,EQ,NVDA,10,1550.00,155.00,0,NVIDIA CORP
+01/28/26,Dividend,EQ,AAPL,0,1.25,0,0,APPLE INC CASH DIV
+01/31/26,Interest,,,0,3.10,0,0,INTEREST ON CASH BALANCE
+01/31/26,Fee,,,0,-0.04,0,0,SEC FEE

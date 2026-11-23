@@ -1,0 +1,39 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ledgermind"
+version = "0.1.0"
+description = "AI-assisted personal accounting on Beancount: bank, card, loan and brokerage statements into balanced double-entry books"
+readme = "README.md"
+license = { text = "Apache-2.0" }
+requires-python = ">=3.11"
+dependencies = ["beancount>=3.0"]
+keywords = ["accounting", "beancount", "personal-finance", "plaintext-accounting", "ai", "llm"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: Apache Software License",
+    "Topic :: Office/Business :: Financial :: Accounting",
+]
+
+[project.optional-dependencies]
+excel = ["openpyxl>=3.1"]
+anthropic = ["anthropic>=0.40"]
+viewer = ["fava"]
+dev = ["pytest>=8", "openpyxl>=3.1", "ruff"]
+
+[project.scripts]
+ledgermind = "ledgermind.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["ledgermind*"]
+
+[tool.ruff]
+line-length = 110
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
