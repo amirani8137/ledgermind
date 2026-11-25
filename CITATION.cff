@@ -1,0 +1,27 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+title: "ledgermind: AI-assisted double-entry accounting on Beancount with human review and audit trail"
+version: 0.1.0
+date-released: 2026-11-22
+license: Apache-2.0
+repository-code: "https://github.com/amirani8137/ledgermind"
+type: software
+authors:
+  - family-names: Mirani
+    given-names: Ajay Parmanand
+    orcid: "https://orcid.org/0009-0007-6208-4755"
+  - family-names: Menghani
+    given-names: Deepa
+keywords:
+  - accounting
+  - double-entry bookkeeping
+  - Beancount
+  - transaction categorization
+  - human-in-the-loop AI
+  - audit trail
+abstract: >-
+  ledgermind converts bank, credit card, loan and brokerage statements into
+  balanced Beancount double-entry ledgers. AI suggests transaction categories
+  but never posts directly: low-confidence results go to a human review queue,
+  every batch is validated before it is accepted, invalid batches are
+  quarantined, and each entry records the statement file and line it came from.
